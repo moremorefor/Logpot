@@ -1,0 +1,15 @@
+.DS_Store
+Thumbs.db
+
+*.pyc
+*.log
+*.db
+.idea
+migrations
+upload
+tmp
+doc
+node_modules
+*.js
+*.css
+logpot/static/bower_components

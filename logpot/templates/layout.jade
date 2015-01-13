@@ -1,0 +1,33 @@
+!!! 5
+html(lang='ja')
+  head
+    link(rel='stylesheet', href="{{ url_for('css_static', filename='reset.css') }}")
+    link(rel='stylesheet', href="{{ url_for('css_static', filename='min.css') }}")
+    //link(rel="stylesheet", href="{{ url_for('admin.static', filename='bootstrap/bootstrap3/css/bootstrap.min.css') }}")
+    if title:
+      title {{ title }} - LOGPOT
+    else
+      title LOGPOT
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
+
+  body
+    .container
+      header.gheader.clearfix
+        h1: a(href='/') LOGPOT
+        nav
+          ul.clearfix
+            if session['user_id']
+              li: a(href="/") Home
+              //li: a(href='/category') Categories
+              //li: a(href='/tag') Tags
+              li: a(href="/admin") Admin
+            else
+              li: a(href="/") Home
+              li: a(href="/admin") Admin
+      
+      if get_flashed_messages()
+        .flash_message
+          ul
+            for message in get_flashed_messages()
+              li {{ message }}
+      block body

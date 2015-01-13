@@ -1,0 +1,22 @@
+{
+  "name": "logpot",
+  "version": "0.0.0",
+  "authors": [
+    "moremorefor"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vue": "~0.11.4",
+    "marked": "~0.3.2",
+    "jquery-autosize": "~1.18.17",
+    "highlightjs": "~8.4.0"
+  }
+}
