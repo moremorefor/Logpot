@@ -9,6 +9,7 @@ DATABASE = 'tmp/logpot.db'
 LOG = 'tmp/logpot.log'
 CSRF_ENABLED = True
 POSTS_PER_PAGE = 10
+SECRET_KEY = 'you-will-never-guess'
 # SQLALCHEMY_ECHO = True
 
 UPLOAD_DIRECTORY = os.path.join(basedir, 'upload')
