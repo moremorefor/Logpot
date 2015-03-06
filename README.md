@@ -1,7 +1,7 @@
 # Logpot
 _(This is currently a very prototype version.)_
 
-Logpot is simple blog system build with flask. 
+Logpot is a simple blog system build with flask.
 
 ## Getting Started
 _It will need Python 3.x to get started._
@@ -18,11 +18,12 @@ $ virtualenv env
 $ source env/bin/activate
 ```
 
-Install
+Setup
 ```
 $ pip install -r ./requirements/dev.txt
 $ npm install
 $ bower install
+$ gulp install
 ```
 
 initialize database

@@ -1,0 +1,188 @@
+// Content
+//
+// all container
+//
+// Markup: <div class="content">content</div>
+//
+// .content - This is container
+//
+// Styleguide 0.0.0
+//
+
+html
+  height: 100%
+  background: #fcfcfc
+
+body
+  font-family: Helvetica, Verdana, "游ゴシック", YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif
+  margin: 0
+  padding: 0
+  color: #717171
+  min-height: 100%
+  height: 100%
+
+a
+  font-weight: bold
+  color: #3697B3
+  text-decoration: none
+
+a:hover
+  text-decoration: underline
+
+.container
+  max-width: 720px
+  margin: 0 auto
+  padding: 20px
+
+/* -- Module ------------------------------------- */
+
+.clearfix:after
+  clear: both
+  display: block
+  content: ''
+
+/* -- Header ------------------------------------- */
+
+header.gheader
+  margin: 10px 0
+  h1
+    font-size: 30px
+    float: left
+  nav
+    float: right
+    ul
+      li
+        list-style-type: none
+        float: left
+        margin: 0 20px 0 0
+
+.flash_message
+  clear: both
+  margin-top: 20px
+  ul
+    background: #f0f0f0
+    padding: 8px
+    border: 1px solid #ccc
+    border-radius: 4px
+
+/* -- Layout ------------------------------------- */
+
+article.content
+  header
+    margin: 30px 0 20px 0
+    padding: 0 0 5px 0
+    border-bottom: 1px solid #d5d5d5
+  header.entries
+    h2
+      margin: 20px 0 0 0
+      font-size: 32px
+  header.entry
+    h2
+      font-size: 40px
+      line-height: 1.7em
+    /* action buttons */
+    p.action_edit
+      float: left
+      margin: 0 15px 0 0
+    form.action_delete
+      margin-top: -1px
+      button
+        border: none
+        background: transparent
+        text-decoration: none
+        padding: 0
+        line-height: normal
+        font-weight: bold
+        color: #3697B3
+        font-size: 16px
+      button:hover
+        text-decoration: underline
+        cursor: pointer
+    /* metadaa */
+    time.updated_at
+      color: #999
+      font-size: 12px
+      margin: 0 15px 0 0
+    span.category
+      color: #999
+      font-size: 12px
+
+  header.login
+    h2
+      margin: 20px 0 0 0
+      font-size: 32px
+
+
+  section.entries
+    div.entry
+      margin: 0 0 20px 0
+      h2
+        font-size: 30px
+        margin: 0 0 0 0
+        line-height: 1.5em
+      /* metadaa */
+      time.updated_at
+        color: #999
+        font-size: 12px
+        margin: 0 15px 0 0
+      span.category
+        color: #999
+        font-size: 12px
+      p.summary
+        color: #999
+        font-size: 17px
+        line-height: 1.5em
+        margin: 5px 0 0 0
+    div.pager
+      margin: 30px 0 0 0
+      a, p
+        display: inline
+      p
+        margin: 0 5px 0 0
+        color: #999
+
+  section.entry
+    width: 96%
+    margin: 0 auto
+    h1
+      font-size: 28px
+      margin: 15px 0
+    h2
+      font-size: 24px
+      margin: 10px 0
+    h3
+      font-size: 20px
+      margin: 10px 0
+    p
+      margin: 15px 0
+      line-height: 1.9em
+    img
+      border: 1px solid #cccccc
+      margin: 20px auto
+      display: block
+      padding: 10px 80px
+      background: #555
+
+    section.login
+      margin: 0 auto
+      form
+        dl
+          dt
+            font-size: 24px
+
+pre
+  background: #23241f
+
+.preview_md
+  width: 38%
+  margin: 0 0 0 15px
+  float: left
+
+.preview
+  width: 38%
+  margin: 0 0 0 20px
+  float: left
+
+  div
+    border: 1px solid #CCC
+    padding: 20px

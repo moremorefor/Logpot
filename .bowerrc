@@ -1,4 +1,4 @@
 {
-  "directory": "logpot/static/bower_components",
+  "directory": "logpot/static_src/bower_components",
   "json": "bower.json"
 }

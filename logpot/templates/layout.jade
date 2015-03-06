@@ -1,9 +1,9 @@
 !!! 5
 html(lang='ja')
   head
-    link(rel='stylesheet', href="{{ url_for('css_static', filename='reset.css') }}")
-    link(rel='stylesheet', href="{{ url_for('css_static', filename='min.css') }}")
-    //link(rel="stylesheet", href="{{ url_for('admin.static', filename='bootstrap/bootstrap3/css/bootstrap.min.css') }}")
+    //- link(rel='stylesheet', href="{{ url_for('css_static', filename='reset.css') }}")
+    link(rel='stylesheet', href="{{ url_for('css_static', filename='app.css') }}")
+    //- link(rel="stylesheet", href="{{ url_for('admin.static', filename='bootstrap/bootstrap3/css/bootstrap.min.css') }}")
     if title:
       title {{ title }} - LOGPOT
     else

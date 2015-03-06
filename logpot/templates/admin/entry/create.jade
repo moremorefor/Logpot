@@ -5,7 +5,6 @@ block head
     {{ super() }}
     {{ lib.form_css() }}
     link(rel="stylesheet", href="{{ url_for('bower', filename='highlightjs/styles/monokai_sublime.css') }}")
-    link(rel="stylesheet", href="{{ url_for('css_static', filename='admin/entry.css') }}")
 
 block body
     block navlinks
