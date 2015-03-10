@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<article class="content">
+
+  <header class="entry">
+    <h2>{{entry.title}}</h2>
+    {% if session['user_id'] %}
+    <p class="action_edit">
+      <a href="{{ url_for('admin_entry.edit_view', id=entry.id, url=this_url) }}">Edit</a>
+    </p>
+    <form class="action_delete" method="POST" action="{{ url_for('admin_entry.delete_view', id=entry.id, url=url_for('.entries')) }}">
+      {% if csrf_tocken %}
+      <input type="hidden" name="csrf_tocken" value="{{ csrf_token() }}">
+      {% endif %}
+      <button onclick="return confirm('Are you sure you want to delete this record?');" title="Delete record">Delete</button>
+      </form>
+    {% endif %}
+    <time class="updated_at">更新日: {{ entry.updated_at }}</time>
+    {% if entry.category %}
+    <span class="category">{{"Category: {cat}".format(cat=entry.category.name)}}</span>
+    {% else %}
+    <span class="category">Category: None</span>
+    {% endif %}
+  </header>
+
+  <section class="entry">
+    {{ entry.body | safe }}
+  </section>
+
+</article>
+{% endblock %}

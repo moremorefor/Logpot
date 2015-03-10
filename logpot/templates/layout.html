@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{{ url_for('css_static', filename='app.css') }}">
+<!--   <link rel="stylesheet" href="{{ url_for('admin.static', filename='bootstrap/bootstrap3/css/bootstrap.min.css') }}"> -->
+  {% if title %}
+    <title>{{ title }} - LOGPOT</title>
+  {% else %}
+    <title>LOGPOT</title>
+  {% endif %}
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+
+    <header class="gheader clearfix">
+      <h1><a href="/">LOGPOT</a></h1>
+      <nav>
+        <ul>
+          {% if session['user_id'] %}
+            <li><a href="/">Home</a></li>
+            <li><a href="/admin">Admin</a></li>
+          {% else %}
+            <li><a href="/">Home</a></li>
+            <li><a href="/admin">Admin</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+
+    {% if get_flashed_messages() %}
+    <div class="flash_message">
+      <ul>
+        {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        {% endwith %}
+      </ul>
+    </div>
+    {% endif %}
+
+  {% block body %}{% endblock %}
+  </div>
+</body>
+</html>

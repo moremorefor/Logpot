@@ -49,15 +49,15 @@ class MyAdminIndexView(AdminIndexView):
     @expose('/')
     @login_required
     def index(self):
-        return self.render('admin/index.jade')
+        return self.render('admin/index.html')
 
 
 class MyView(AuthenticateView, BaseView):
 
     @expose('/')
     def index(self):
-        return self.render('admin/test.jade')
+        return self.render('admin/test.html')
 
     @expose('/test/')
     def test(self):
-        return self.render('admin/test.jade')
+        return self.render('admin/test.html')

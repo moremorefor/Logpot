@@ -21,7 +21,6 @@ from logpot.entry.models import Entry, Category, Tag
 def create_app(config=None):
     app = Flask("logpot")
 
-    app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
     app.config.from_object('config')  # pull in configuration
 
     CsrfProtect(app)

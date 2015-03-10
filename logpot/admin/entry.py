@@ -19,7 +19,7 @@ import pygments
 
 
 class EntryModelView(AuthenticateView, CommonModelView):
-    create_template = 'admin/entry/create.jade'
+    create_template = 'admin/entry/create.html'
 
     column_list = (
         'title',

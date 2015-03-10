@@ -17,13 +17,13 @@ def login():
         user = User.query.filter_by(name=form.username.data).first()
         if not user:
             flash('User or Password is not correct.')
-            return render_template('auth/login.jade', title='ログイン', form=form)
+            return render_template('auth/login.html', title='ログイン', form=form)
         login_user(user)
         flash('Logged in successfully.')
         current_app.logger.info('login success.')
         current_app.logger.info('User: %r' % user)
         return redirect(request.args.get('next') or url_for('index'))
-    return render_template('auth/login.jade', title='ログイン', form=form)
+    return render_template('auth/login.html', title='ログイン', form=form)
 
 
 @bp.route('/logout')

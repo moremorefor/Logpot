@@ -42,7 +42,7 @@ def entries(page=1):
         for e in entries:
             e.updated_at = formatDatetime(e.updated_at)
     # logging.info(request.headers.get('User-Agent'))
-    return render_template('entry/entries.jade', title='Home', entries=entries)
+    return render_template('entry/entries.html', title='Home', entries=entries)
 
 
 @bp.route('/<slug>')
@@ -53,4 +53,4 @@ def entry(slug):
         # abort(404)
     else:
         entry.updated_at = formatDatetime(entry.updated_at)
-        return render_template('entry/entry.jade', entry=entry, this_url=url_for('.entry', slug=slug))
+        return render_template('entry/entry.html', entry=entry, this_url=url_for('.entry', slug=slug))

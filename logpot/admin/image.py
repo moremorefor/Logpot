@@ -86,7 +86,7 @@ class ImageModelView(AuthenticateView, CommonModelView):
                     form.uploadfile.errors.append('Please select image')
                     flash_errors(form)
                     return self.render(
-                        'admin/upload.jade',
+                        'admin/upload.html',
                         form=form,
                         return_url=url_for('.index_view')
                     )
@@ -126,4 +126,4 @@ class ImageModelView(AuthenticateView, CommonModelView):
             return redirect(url_for('.index_view'))
         else:
             flash_errors(form)
-        return self.render('admin/upload.jade', form=form, return_url=url_for('.index_view'))
+        return self.render('admin/upload.html', form=form, return_url=url_for('.index_view'))

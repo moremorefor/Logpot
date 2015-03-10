@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<article class="content">
+
+  <header class="login">
+    <h2>Login Form</h2>
+  </header>
+
+  <section class="login">
+    <form method="post" name="login">
+      {{ form.hidden_tag() }}
+      <dl>
+        <dt>Username</dt>
+        <dd>{{ form.username }}</dd>
+        <dt>Password</dt>
+        <dd>{{ form.password }}</dd>
+        <dd><input type="submit" value="Login"></dd>
+      </dl>
+    </form>
+  </section>
+
+</article>
+{% endblock %}

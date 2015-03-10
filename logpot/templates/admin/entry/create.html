@@ -1,0 +1,32 @@
+{% extends "admin/master.html" %}
+{% import 'admin/lib.html' as lib with context %}
+
+{% block head %}
+  {{ super() }}
+  {{ lib.form_css() }}
+  <link rel="stylesheet" href="{{ url_for('bower', filename='highlightjs/styles/monokai_sublime.css') }}">
+{% endblock %}
+
+{% block body %}
+  {% block navlinks %}
+    <ul class="nav nav-tabs">
+      <li><a href="{{ return_url }}">{{ _gettext('List') }}</a></li>
+      <li class="active"><a href="javascript:void(0)">{{ _gettext('Create') }}</a></li>
+    </ul>
+  {% endblock %}
+
+  <form class="form-horizontal" action="{{ url_for('.create_view') }}" method="post" role="form" enctype="multipart/form-data">
+    <div id="editor">{{ lib.render_form_fields(form, form_opts=form_opts) }}</div>
+    {{ lib.render_form_buttons(return_url) }}
+  </form>
+{% endblock %}
+
+{% block tail %}
+  {{ super() }}
+  {{ lib.form_js() }}
+  <script src="{{ url_for('bower', filename='vue/dist/vue.min.js') }}"></script>
+  <script src="{{ url_for('bower', filename='marked/lib/marked.js') }}"></script>
+  <script src="{{ url_for('bower', filename='jquery-autosize/jquery.autosize.min.js') }}"></script>
+  <script src="{{ url_for('bower', filename='highlightjs/highlight.pack.js') }}"></script>
+  <script src="{{ url_for('js_static', filename='preview.js') }}"></script>
+{% endblock %}
