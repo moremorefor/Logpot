@@ -11,6 +11,8 @@ from flask.ext.admin.babel import gettext
 
 import misaka
 import pygments
+import os
+import os.path as op
 
 
 ##===================================================================
@@ -77,6 +79,10 @@ class EntryModelView(AuthenticateView, CommonModelView):
 
     def update_model(self, form, model):
         form.body.data = renderMarkdown(form.slug.data, form.md_body.data)
+        # Update image direcotry
+        if model.images:
+            if not model.slug == form.slug.data:
+                updateImageDirectory(model.slug, form.slug.data)
         if super().update_model(form, model):
             return True
 
@@ -151,3 +157,9 @@ def renderMarkdown(slug, body):
         extensions=misaka.EXT_FENCED_CODE | misaka.EXT_NO_INTRA_EMPHASIS)
     misaka_content = misaka_md.render(body)
     return misaka_content
+
+
+def updateImageDirectory(oldSlug, newSlug):
+    oldPath = op.join(current_app.config['UPLOAD_DIRECTORY'], oldSlug)
+    newPath = op.join(current_app.config['UPLOAD_DIRECTORY'], newSlug)
+    os.rename(oldPath, newPath)
