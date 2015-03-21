@@ -3,9 +3,9 @@ shell = require 'gulp-shell'
 
 gulp.task 'install', shell.task(
     [
-      'bourbon install',
-      'neat install',
-      'bitters install'
+      'bundle exec bourbon install',
+      'bundle exec neat install',
+      'bundle exec bitters install'
     ],
     { cwd: './logpot/static_src/css/plugin/'}
   )

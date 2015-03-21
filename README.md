@@ -21,6 +21,7 @@ $ source env/bin/activate
 Setup
 ```
 $ pip install -r ./requirements/dev.txt
+$ bundle install --path vendor/bundle
 $ npm install
 $ bower install
 $ gulp install
