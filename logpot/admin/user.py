@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 
-from flask.ext.admin.form import rules
+from flask_admin.form import rules
 
 from logpot.auth.models import User
 from logpot.admin.base import AuthenticateView, CommonModelView

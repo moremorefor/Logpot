@@ -4,7 +4,7 @@ from logpot.admin.base import AuthenticateView, CommonModelView, checkFieldEmpty
 
 from flask import flash
 from flask.ext.login import current_user
-from flask.ext.admin.form import rules
+from flask_admin.form import rules
 # from logpot import rules
 from flask.ext.admin.contrib.sqla.view import log
 from flask.ext.admin.babel import gettext
