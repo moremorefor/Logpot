@@ -42,6 +42,8 @@ class EntryModelView(AuthenticateView, CommonModelView):
         category=dict(allow_blank=True)
     )
 
+    form_excluded_columns = ('author', 'md_body', 'body', 'updated_at', 'created_at')
+
     form_create_rules = [
         rules.Header('Entry'),
         rules.Field('title'),
@@ -93,7 +95,9 @@ class CategoryModelView(AuthenticateView, CommonModelView):
         'updated_at'
     )
 
-    form_create_rules = form_edit_rules = [
+    form_excluded_columns = ('entries', 'created_at', 'updated_at')
+
+    form_rules = [
         rules.Field('name')
     ]
 
@@ -108,7 +112,9 @@ class TagModelView(AuthenticateView, CommonModelView):
         'updated_at'
     )
 
-    form_create_rules = form_edit_rules = [
+    form_excluded_columns = ('entries', 'created_at', 'updated_at')
+
+    form_rules = [
         rules.Field('name')
     ]
 

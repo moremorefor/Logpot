@@ -23,14 +23,9 @@ class UserModelView(AuthenticateView, CommonModelView):
 
     column_searchable_list = (User.name, User.email)
 
+    form_excluded_columns = ('entries')
 
-    form_create_rules = [
-        rules.Field('name'),
-        rules.Field('email'),
-        rules.Field('password')
-    ]
-
-    form_edit_rules = [
+    form_rules = [
         rules.Field('name'),
         rules.Field('email'),
         rules.Field('password')
