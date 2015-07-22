@@ -7,6 +7,7 @@ initialize = ->
   imagefieldset = $('#imageFieldset').clone()
   imagefieldset.removeAttr('id')
   imagefieldset.children('div')[0].remove()
+  imagefieldset.addClass('imageFieldset')
   fieldset = imagefieldset.wrap('<div>').parent().html()
 
   addImageFieldButton.addEventListener 'click', (evt) ->

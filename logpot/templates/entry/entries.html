@@ -1,40 +1,30 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<article class="content">
+  <section class="entries clearfix">
 
-  <header class="entries">
-    <h2>Entries</h2>
-  </header>
-
-  <section class="entries">
     {% for entry in entries %}
-    <div class="entry">
-      <h2><a href="{{url_for('.entry', slug=entry.slug)}}">{{entry.title}}</a></h2>
-      <p class="summary">{{entry.summary}}</p>
-      <time class="updated_at">{{entry.updated_at}}</time>
+    <div class="summary">
+      <h2 class="summary__title"><a href="{{url_for('.entry', slug=entry.slug)}}">{{entry.title}}</a></h2>
+      <div class="summary__info">
+        <time class="summary__updated">{{entry.updated}}</time>
         {% if entry.category %}
-        <span class="category">{{'Category: {cat}'.format(cat=entry.category.name)}}</span>
+        <span class="summary__category">{{'Category: {cat}'.format(cat=entry.category.name)}}</span>
         {% else %}
-        <span class="category">Category: None</span>
+        <span class="summary__category">Category: None</span>
         {% endif %}
+      </div>
+      <p class="summary__body">{{entry.summary}}</p>
     </div>
     {% endfor %}
 
-  <div class="pager">
-    {% if entries.has_prev %}
-    <a href="{{ url_for('.entries', page=entries.prev_num) }}"><< Newer posts</a>
-    {% else %}
-    <p><< Newer</p>
-    {% endif %}
+    <div class="paginate clearfix">
+      {% import "_pagination.html" as p %}
+      {% if pagination %}
+      {{ p.pagination_widget(pagination,'.entries') }}
+      {% endif %}
+    </div>
 
-    {% if entries.has_next %}
-    <a href="{{ url_for('.entries', page=entries.next_num) }}">Older posts >></a>
-    {% else %}
-    <p>Older >></p>
-    {% endif %}
-  </div>
   </section>
 
-</article>
 {% endblock %}

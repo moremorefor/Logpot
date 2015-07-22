@@ -18,8 +18,7 @@
     </ul>
   {% endblock %}
 
-  <h1>Upload Form</h1>
-  <button id="addImageField">Add Field</button>
+  <button id="addImageField" class="btn btn-default">Add more image field</button>
   <form class="form-horizontal" action="{{ url_for('.create_view') }}" method="post" role="form" enctype="multipart/form-data">
     <div id="imageFieldset">{{ lib.render_form_fields(form, form_opts=form_opts) }}</div>
     <div class="form-group" id="form-buttons">

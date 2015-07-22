@@ -7,6 +7,7 @@ from logpot.ext import db
 
 from flask import redirect, current_app
 from flask import render_template, url_for
+from flask.ext.sqlalchemy import Pagination
 
 import calendar
 
@@ -20,10 +21,7 @@ def ord(n):
 
 
 def formatDatetime(datetime):
-    year = datetime.year
-    month = calendar.month_abbr[datetime.month]
-    day = ord(datetime.day)
-    result_date = '{m} {d} {y}'.format(y=year, m=month, d=day)
+    result_date = datetime.strftime('%Y-%m-%d')
     return result_date
 
 
@@ -35,15 +33,15 @@ def formatDatetime(datetime):
 @bp.route('/')
 @bp.route('/<int:page>', methods=['GET'])
 def entries(page=1):
-    entries = Entry.query.outerjoin(Entry.category).paginate(page, current_app.config['POSTS_PER_PAGE'], False).items
+    p = Entry.query.outerjoin(Entry.category).order_by(Entry.id.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], False)
+    entries = p.items
     if len(entries) == 0:
         print('There are no entries.')
         abort(404)
     else:
         for e in entries:
-            e.updated_at = formatDatetime(e.updated_at)
-    # logging.info(request.headers.get('User-Agent'))
-    return render_template('entry/entries.html', title='Home', entries=entries)
+            e.updated = formatDatetime(e.updated_at)
+    return render_template('entry/entries.html', title='Home', entries=entries, pagination=p)
 
 
 @bp.route('/<slug>')
@@ -53,5 +51,5 @@ def entry(slug):
         print('No such entry.')
         # abort(404)
     else:
-        entry.updated_at = formatDatetime(entry.updated_at)
+        entry.updated = formatDatetime(entry.updated_at)
         return render_template('entry/entry.html', entry=entry, this_url=url_for('.entry', slug=slug))

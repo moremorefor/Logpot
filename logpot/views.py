@@ -47,7 +47,7 @@ def bower(filename):
 
 @app.route('/_settings/<path:filename>')
 def img_settings(filename):
-    path = 'settings/' + filename
+    path = '_settings/' + filename
     return send_from_directory(app.config['UPLOAD_DIRECTORY'], path)
 
 @app.route('/entry/<path:slug>/<path:filename>')

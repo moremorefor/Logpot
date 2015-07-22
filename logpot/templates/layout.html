@@ -2,48 +2,69 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="{{ url_for('css_static', filename='app.css') }}">
-<!--   <link rel="stylesheet" href="{{ url_for('admin.static', filename='bootstrap/bootstrap3/css/bootstrap.min.css') }}"> -->
+  <meta name="viewport" content="width=device-width">
   {% if title %}
-    <title>{{ title }} - LOGPOT</title>
+    <title>{{ title }} - {{ config.site_title }}</title>
   {% else %}
-    <title>LOGPOT</title>
+    <title>{{ config.site_title }}</title>
   {% endif %}
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  {% block head %}
+  {% endblock %}
+  <link rel="stylesheet" href="{{ url_for('css_static', filename='app.css') }}">
 </head>
 
 <body>
-  <div class="container">
+  <header class="gheader clearfix">
+    <h1 class="gheader__title"><a href="/">{{ config.site_title }}</a></h1>
+    <p class="gheader__subtitle">{{ config.site_subtitle }}</p>
+  </header>
 
-    <header class="gheader clearfix">
-      <h1><a href="/">LOGPOT</a></h1>
-      <nav>
-        <ul>
-          {% if session['user_id'] %}
-            <li><a href="/">Home</a></li>
-            <li><a href="/admin">Admin</a></li>
-          {% else %}
-            <li><a href="/">Home</a></li>
-            <li><a href="/admin">Admin</a></li>
-          {% endif %}
-        </ul>
-      </nav>
-    </header>
-
-    {% if get_flashed_messages() %}
-    <div class="flash_message">
-      <ul>
-        {% with messages = get_flashed_messages() %}
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-        {% endwith %}
-      </ul>
-    </div>
-    {% endif %}
-
-  {% block body %}{% endblock %}
+  {% if get_flashed_messages() %}
+  <div class="flash_message clearfix">
+    <ul>
+      {% with messages = get_flashed_messages() %}
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      {% endwith %}
+    </ul>
   </div>
+  {% endif %}
+
+  <div class="container">
+    <article class="content">
+    {% block body %}{% endblock %}
+    </article>
+  </div>
+
+  <footer class="footer">
+    <div class="profile clearfix">
+      {% if config.enable_profile_img %}
+      <img class="profile__img" src="{{ url_for('img_settings', filename='profile.png') }}" width="64" height="64"/>
+      {% else %}
+      <img class="profile__img" src="{{ url_for('img_settings', filename='default.png') }}" width="64" height="64"/>
+      {% endif %}
+      <div class="profile__info">
+        {% if config.enable_link_github %}
+        <h4 class="profile__name"><a href="https://github.com/{{ config.site_author }}" target="new">@{{ config.site_author }}</a></h4>
+        {% else %}
+        <h4 class="profile__name">{{ config.site_author }}</h4>
+        {% endif %}
+        <p class="profile__description">{{ config.site_subtitle }}</p>
+      </div>
+    </div>
+    <div class="copyright">
+      <small>
+        &copy; 2015 {{ config.site_title }}
+      {% if config.display_poweredby %}
+        - Powered by <a href="https://github.com/moremorefor/Logpot" target="new">Logpot</a>
+      {% endif %}
+      </small>
+    </div>
+  </footer>
+
+  {% block tail %}
+  {% endblock %}
 </body>
 </html>

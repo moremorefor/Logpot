@@ -13,7 +13,7 @@ from logpot.entry.models import Entry
 import re
 
 class FileUploadForm(Form):
-    uploadfile = FileField('image', validators=[FileRequired('Please select image')])
+    uploadfile = FileField('image')
     name = StringField('Filename')
     entry_id = QuerySelectField(
         query_factory=lambda: db.session.query(Entry).filter_by(author=current_user).all()

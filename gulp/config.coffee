@@ -5,6 +5,7 @@ path =
   src:
     dir    : srcDir
     sass   : srcDir + '/css/app.sass'
+    sass2  : srcDir + '/css/admin.sass'
     html   : srcDir + '/*.html'
     img    : srcDir + '/img/*'
     coffee : './' + srcDir + '/js/*.coffee'

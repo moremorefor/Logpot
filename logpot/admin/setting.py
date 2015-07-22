@@ -13,7 +13,7 @@ import mimetypes
 class SettingView(AuthenticateView, BaseView):
 
     def getDirectoryPath(self):
-        dirpath = os.path.join(current_app.config['UPLOAD_DIRECTORY'], 'settings')
+        dirpath = os.path.join(current_app.config['UPLOAD_DIRECTORY'], '_settings')
         if os.path.exists(dirpath):
             return dirpath
         else:

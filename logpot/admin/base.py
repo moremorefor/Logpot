@@ -39,8 +39,8 @@ class CommonModelView(ModelView):
     # def after_model_change(self, form, model, is_created):
     #     flash('Success.')
 
-    def on_model_delete(self, model):
-        flash('Delete Success.')
+    # def on_model_delete(self, model):
+    #     flash('Delete Success.')
 
 
 class IndexView(AdminIndexView):
