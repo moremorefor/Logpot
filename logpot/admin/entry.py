@@ -42,37 +42,6 @@ class EntryModelView(AuthenticateView, CommonModelView):
         category=dict(allow_blank=True)
     )
 
-    form_excluded_columns = ('author', 'md_body', 'body', 'updated_at', 'created_at')
-
-    form_create_rules = [
-        rules.Header('Entry'),
-        rules.Field('title'),
-        rules.Field('slug'),
-        rules.Field('category'),
-        rules.Field('tags'),
-        rules.Field('summary'),
-        rules.HTML(
-            """
-            <div class="form-group clearfix">
-            <label for="md_body" class="col-md-2 control-label">Body
-                <strong style="color: red">*</strong>
-            </label>
-            <div class="preview_md">
-                <textarea class="form-control" id="autosizable" name="md_body" v-model="input">
-                </textarea>
-            </div>
-
-
-            <div class="preview">
-                <div v-html="input | marked"></div>
-            </div>
-            </div>
-            """
-        ),
-        rules.Field('is_published'),
-        rules.Field('images')
-    ]
-
     def create_model(self, form):
         form.body.data = renderMarkdown(form.slug.data, form.md_body.data)
         form.author.data = current_user

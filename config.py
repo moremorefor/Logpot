@@ -2,20 +2,19 @@
 
 import os
 
-# Configuration
 basedir = os.path.abspath(os.path.dirname(__file__))
-DEBUG = True
-DATABASE = 'tmp/logpot.db'
-LOG = 'tmp/logpot.log'
 CSRF_ENABLED = True
-POSTS_PER_PAGE = 10
+POSTS_PER_PAGE = 7
 SECRET_KEY = 'you-will-never-guess'
 # SQLALCHEMY_ECHO = True
 
 UPLOAD_DIRECTORY = os.path.join(basedir, 'upload')
 
-DATABASE_PATH = os.path.join(basedir, DATABASE)
-LOG_DIRECTORY = os.path.join(basedir, 'tmp')
-LOG_PATH = os.path.join(basedir, LOG)
-
+DATABASE = 'logpot.db'
+DATABASE_DIRECTORY = os.path.join(basedir, 'db')
+DATABASE_PATH = os.path.join(DATABASE_DIRECTORY, DATABASE)
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + DATABASE_PATH
+
+LOG = 'logpot.log'
+LOG_DIRECTORY = os.path.join(basedir, 'log')
+LOG_PATH = os.path.join(LOG_DIRECTORY, LOG)

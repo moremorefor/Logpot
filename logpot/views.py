@@ -45,12 +45,15 @@ def js_static(filename):
 def bower(filename):
     return send_from_directory(app.root_path + '/static/bower_components/', filename)
 
+@app.route('/_settings/<path:filename>')
+def img_settings(filename):
+    path = 'settings/' + filename
+    return send_from_directory(app.config['UPLOAD_DIRECTORY'], path)
 
 @app.route('/entry/<path:slug>/<path:filename>')
 def img_upload(slug, filename):
     path = slug + '/' + filename
     return send_from_directory(app.config['UPLOAD_DIRECTORY'], path)
-
 
 @app.route('/entry/<path:slug>/<path:filename>_thumb_s<path:ext>')
 def img_upload_thumb_s(slug, filename, ext):
@@ -66,8 +69,6 @@ def img_upload_thumb_m(slug, filename, ext):
 def img_upload_thumb_l(slug, filename, ext):
     path = slug + '/thumb/l/' + filename + ext
     return send_from_directory(app.config['UPLOAD_DIRECTORY'], path)
-
-## ---------- Routing Helper ---------- ##
 
 
 @app.route('/')

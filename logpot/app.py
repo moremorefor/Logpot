@@ -9,23 +9,24 @@ from flask.ext.admin.menu import MenuLink
 from logpot.entry import bp as entry_bp
 from logpot.auth import bp as auth_bp
 from logpot.auth.models import User
-from logpot.ext import db, loginManager, migrate, admin
+from logpot.ext import db, loginManager, migrate
 from logpot.admin.image import ImageModelView
 from logpot.admin.file import EntryFileView
 from logpot.admin.user import UserModelView
 from logpot.admin.entry import EntryModelView, CategoryModelView, TagModelView
+from logpot.admin.setting import SettingView
 from logpot.image.models import Image
 from logpot.entry.models import Entry, Category, Tag
+from logpot.utils import loadSiteConfig
 
 
 def create_app(config=None):
     app = Flask("logpot")
 
-    app.config.from_object('config')  # pull in configuration
+    loadConfig(app)
 
     CsrfProtect(app)
 
-    # First, create a directory
     createDirectory(app)
 
     configure_blueprints(app)
@@ -35,6 +36,9 @@ def create_app(config=None):
 
     return app
 
+def loadConfig(app):
+    app.config.from_object('config')
+    data = loadSiteConfig(app)
 
 def configure_blueprints(app):
     app.register_blueprint(entry_bp, url_prefix='/entry')
@@ -56,15 +60,26 @@ def configure_extentions(app):
 
     # debugtoolbar.init_app(app)
 
+    from flask.ext.admin import Admin
+    from logpot.admin.base import IndexView
+    admin = Admin(
+        name="Logpot",
+        endpoint='admin',
+        index_view=IndexView(name="Index"),
+        base_template='admin/admin_layout.html',
+        template_mode='bootstrap3'
+    )
+
     admin.init_app(app)
     admin.add_view(UserModelView(User, db.session))
     admin.add_view(EntryModelView(Entry, db.session, endpoint='admin_entry', url='/admin/entry'))
     admin.add_view(CategoryModelView(Category, db.session))
     admin.add_view(TagModelView(Tag, db.session))
     admin.add_view(ImageModelView(Image, db.session, endpoint='admin_image', url='/admin/image'))
-    admin.add_view(EntryFileView(app.config['UPLOAD_DIRECTORY']))
-    admin.add_link(MenuLink(name='Back Home', url='/', category='Settings'))
-    admin.add_link(MenuLink(name='Logout', endpoint='auth.logout', category='Settings'))
+    admin.add_view(EntryFileView(app.config['UPLOAD_DIRECTORY'], name='Files'))
+    admin.add_view(SettingView(name='Setting'))
+    admin.add_link(MenuLink(name='Back Home', url='/', category='Others'))
+    admin.add_link(MenuLink(name='Logout', endpoint='auth.logout', category='Others'))
 
 
 def configure_request_handler(app):
@@ -91,6 +106,9 @@ def configure_logging(app):
 def createDirectory(app):
     if not os.path.exists(app.config['UPLOAD_DIRECTORY']):
         os.makedirs(app.config['UPLOAD_DIRECTORY'])
+
+    if not os.path.exists(app.config['DATABASE_DIRECTORY']):
+        os.makedirs(app.config['DATABASE_DIRECTORY'])
 
     if not os.path.exists(app.config['LOG_DIRECTORY']):
         os.makedirs(app.config['LOG_DIRECTORY'])

@@ -9,7 +9,6 @@ from flask.ext.login import login_required, current_user
 
 def flash_errors(form):
     """Flashes form errors"""
-    current_app.logger.info(form.errors)
     for field, errors in form.errors.items():
         for error in errors:
             flash(u"Error in the %s field - %s" % (
@@ -37,27 +36,16 @@ class AuthenticateView(object):
 class CommonModelView(ModelView):
     form_excluded_columns = ('created_at', 'updated_at')
 
-    def after_model_change(self, form, model, is_created):
-        flash('Success.')
+    # def after_model_change(self, form, model, is_created):
+    #     flash('Success.')
 
     def on_model_delete(self, model):
         flash('Delete Success.')
 
 
-class MyAdminIndexView(AdminIndexView):
+class IndexView(AdminIndexView):
 
     @expose('/')
     @login_required
     def index(self):
         return self.render('admin/index.html')
-
-
-class MyView(AuthenticateView, BaseView):
-
-    @expose('/')
-    def index(self):
-        return self.render('admin/test.html')
-
-    @expose('/test/')
-    def test(self):
-        return self.render('admin/test.html')

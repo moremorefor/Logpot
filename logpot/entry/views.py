@@ -37,7 +37,8 @@ def formatDatetime(datetime):
 def entries(page=1):
     entries = Entry.query.outerjoin(Entry.category).paginate(page, current_app.config['POSTS_PER_PAGE'], False).items
     if len(entries) == 0:
-        return redirect(url_for('entry.entries'))
+        print('There are no entries.')
+        abort(404)
     else:
         for e in entries:
             e.updated_at = formatDatetime(e.updated_at)

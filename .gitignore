@@ -9,8 +9,9 @@ Thumbs.db
 
 migrations
 upload
-tmp
 doc
+db
+log
 
 node_modules
 bower_components
@@ -19,8 +20,9 @@ bower_components
 vendor
 Gemfile.lock
 
-logpot/static/
-
 **/plugin/bourbon
 **/plugin/neat
 **/plugin/base
+
+logpot/static/
+logpot/config.yml
