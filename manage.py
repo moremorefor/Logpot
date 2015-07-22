@@ -26,6 +26,25 @@ def run():
 
 
 @manager.command
+def setup():
+    if prompt_bool("Are you sure you want to create DB and initialize?"):
+        drop_db()
+        init_db()
+        if init_admin():
+            print('Success!')
+
+@manager.command
+def initall():
+    if prompt_bool("Are you sure you want to create DB and initialize?"):
+        drop_db()
+        init_db()
+        if init_admin():
+            init_category()
+            init_tag()
+            init_entry()
+            print('Success!')
+
+@manager.command
 def init_admin():
     name = prompt('Resister admin user.\n[?] input username: ')
     email = prompt('[?] input email: ')
@@ -38,18 +57,6 @@ def init_admin():
     else:
         init_admin_user(name, email, password)
         return True
-
-
-@manager.command
-def initall():
-    if prompt_bool("Are you sure you want to create DB and initialize?"):
-        drop_db()
-        init_db()
-        if init_admin():
-            init_category()
-            init_tag()
-            init_entry()
-
 
 @manager.command
 def initdb():
