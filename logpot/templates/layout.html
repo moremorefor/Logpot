@@ -43,7 +43,7 @@
       {% if config.enable_profile_img %}
       <img class="profile__img" src="{{ url_for('img_settings', filename='profile.png') }}" width="64" height="64"/>
       {% else %}
-      <img class="profile__img" src="{{ url_for('img_settings', filename='default.png') }}" width="64" height="64"/>
+      <img class="profile__img" src="{{ url_for('img_static', filename='profile.png') }}" width="64" height="64"/>
       {% endif %}
       <div class="profile__info">
         {% if config.enable_link_github %}
