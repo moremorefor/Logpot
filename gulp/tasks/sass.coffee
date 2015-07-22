@@ -6,7 +6,7 @@ browserSync = require 'browser-sync'
 config      = require '../config'
 paths       = config.path
 
-gulp.task 'sass', ->
+gulp.task 'sass', ['sass2'], ->
   sassOptions =
     style      : 'nested'
     sourcemap  : false
@@ -23,7 +23,7 @@ gulp.task 'sass', ->
 gulp.task 'sass2', ->
   sassOptions =
     style      : 'nested'
-    sourcemap  : true
+    sourcemap  : false
   sass "#{paths.src.sass2}", sassOptions
     .pipe pleeease(
       autoprefixer:

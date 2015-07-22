@@ -3,7 +3,7 @@ config = require '../config'
 paths  = config.path
 
 gulp.task 'watch', ->
-  gulp.watch ["#{paths.watch.sass}", "#{paths.watch.scss}"], ['sass', 'sass2']
+  gulp.watch ["#{paths.watch.sass}", "#{paths.watch.scss}"], ['sass']
   gulp.watch ["#{paths.watch.coffee}"], ['coffee']
   gulp.watch [
     "#{paths.watch.html}"
