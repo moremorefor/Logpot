@@ -29,7 +29,7 @@ $ gulp install
 
 initialize database
 ```
-$ python manage.py initall
+$ python manage.py initialize
 ```
 
 run

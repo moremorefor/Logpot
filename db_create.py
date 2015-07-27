@@ -15,14 +15,6 @@ def drop_db():
     db.drop_all()
 
 
-def init_user():
-    password = User.generate_password_hash(app.config["PASSWORD"])
-    u = User(name=app.config["ADMIN"], email=app.config["EMAIL"], password=password)
-    db.session.add(u)
-    db.session.commit()
-    db.session.remove()
-
-
 def init_admin_user(name, email, password):
     password = User.generate_password_hash(password)
     u = User(name=name, email=email, password=password)
@@ -33,24 +25,13 @@ def init_admin_user(name, email, password):
 
 def init_category():
     c = Category(name='Python')
-    c2 = Category(name='Objective-C')
     db.session.add(c)
-    db.session.add(c2)
     db.session.commit()
     db.session.remove()
 
 
 def init_tag():
     t = Tag(name='Flask')
-    t2 = Tag(name='Django')
-    db.session.add(t)
-    db.session.add(t2)
-    db.session.commit()
-    db.session.remove()
-
-
-def add_tag(name):
-    t = Tag(name=name)
     db.session.add(t)
     db.session.commit()
     db.session.remove()
@@ -60,25 +41,16 @@ def init_entry():
     u = User.query.get(1)
     c = Category.query.get(1)
     t = Tag.query.get(1)
-    s = 'entryslug'
+    s = 'example'
     md_body = (
-        "# This is H1 heading.\n" +
-        "## This is H2 heading.\n" +
-        "### This is H3 heading.\n" +
-        "#### This is H4 heading.\n" +
-        "\n" +
-        "[Google](http://google.co.jp 'Title')\n" +
-        "\n" +
-        "```python\n" +
-        "print('uuuu')\n" +
-        "```\n"
+        example_markdown()
     )
 
     body = renderMarkdown(s, md_body)
 
     entries01 = Entry(
-        title=u'Title sample',
-        summary=u'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        title=u'Example article',
+        summary=u'Curabitur blandit tempus porttitor. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec sed odio dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.',
         md_body=md_body,
         body=body,
         slug=s,
@@ -90,6 +62,96 @@ def init_entry():
     db.session.remove()
 
 
-def show_entry():
-    for entry in db.session.query(Entry).all():
-        print (entry, entry.tags, entry.category, entry.author)
+def example_markdown():
+    return """
+# Headline
+Curabitur blandit tempus porttitor. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec sed odio dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+
+## Headline2
+Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod semper.
+
+### Headline3
+Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas faucibus mollis interdum. Nullam quis risus eget urna mollis ornare vel eu leo.
+
+#### Headline4
+Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
+
+##### Headline5
+Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+
+###### Headline6
+Maecenas sed diam eget risus varius blandit sit amet non magna. Etiam porta sem malesuada magna mollis euismod.
+
+### Another Elements
+Leave 2 spaces at the end of a line to do a
+line break.
+
+Text attributes *italic*, **bold**,`monospace`, <del>strikethrough</del>.
+
+Unordered list:
+
+- Red
+- Green
+- Blue
+
+Numbered list:
+
+1. apples
+1. oranges
+1. pears
+
+Definition list:
+
+<dl>
+<dt>Coffee</dt><dd>Black hot drink</dd>
+<dt>Milk</dt><dd>White cold drink</dd>
+</dl>
+
+```python
+def fib(n):
+    a, b = 0, 1
+    while a < n:
+        print(a, end=' ')
+        a, b = b, a+b
+    print()
+fib(1000)
+```
+
+<!-- dummy comment line for breaking list -->
+
+> This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+> consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+> Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
+>
+> Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+> id sem consectetuer libero luctus adipiscing.
+
+[Wikipedia](https://www.wikipedia.org/ "Link Title")
+
+[Google][a]
+
+[Yahoo][1]
+
+
+* * *
+
+horizontal rule
+
+***
+
+horizontal rule
+
+*****
+
+horizontal rule
+
+- - -
+
+horizontal rule
+
+---------------------------------------
+
+[a]: http://google.co.jp "Link Title"
+
+[1]: http://www.yahoo.co.jp "Link Title"
+"""
