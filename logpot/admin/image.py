@@ -5,6 +5,7 @@ from logpot.entry.models import Entry
 from logpot.image.models import Image
 from logpot.admin.base import AuthenticateView, CommonModelView, flash_errors
 from logpot.admin.forms import FileUploadForm
+from logpot.utils import ImageUtil, getDirectoryPath
 
 from flask import current_app, flash, url_for, request, redirect
 from flask.ext.admin import expose
@@ -14,33 +15,6 @@ from jinja2 import Markup
 
 import os
 import mimetypes
-
-
-def getDirectoryPath(slug):
-    dirpath = os.path.join(current_app.config['UPLOAD_DIRECTORY'], slug)
-    if os.path.exists(dirpath):
-        return dirpath
-    else:
-        os.makedirs(dirpath)
-        return dirpath
-
-
-def getFileExtention(mimetype):
-    ext = mimetypes.guess_extension(mimetype)
-    if ext == ".jpe":
-        ext = ".jpg"
-        return ext
-    elif ext is None:
-        ext = '.jpg'
-        return ext
-    else:
-        return ext
-
-
-def generate_thumbnail_s(filename):
-    name, ext = os.path.splitext(filename)
-    return "{0}_thumb_s{1}".format(name, ext)
-
 
 class ImageModelView(AuthenticateView, CommonModelView):
     column_list = (
@@ -104,8 +78,8 @@ class ImageModelView(AuthenticateView, CommonModelView):
                 entry_id = request.form.getlist('entry_id')[i]
                 e = db.session.query(Entry).filter_by(id=entry_id).one()
 
-                ext = getFileExtention(file.mimetype)
-                dirpath = getDirectoryPath(e.slug)
+                ext = ImageUtil.getFileExtention(file.mimetype)
+                dirpath = getDirectoryPath(current_app, e.slug)
                 path = name + ext
                 file.save(os.path.join(dirpath, path))
 

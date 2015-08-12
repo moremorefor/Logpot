@@ -5,31 +5,22 @@ from flask.ext.admin import expose, BaseView
 
 from logpot.admin.base import AuthenticateView, flash_errors
 from logpot.admin.forms import SettingForm
-from logpot.utils import loadSiteConfig, saveSiteConfig
+from logpot.utils import ImageUtil, getDirectoryPath, loadSiteConfig, saveSiteConfig
 
 import os
-import mimetypes
+from PIL import Image
 
 class SettingView(AuthenticateView, BaseView):
 
-    def getDirectoryPath(self):
-        dirpath = os.path.join(current_app.config['UPLOAD_DIRECTORY'], '_settings')
-        if os.path.exists(dirpath):
-            return dirpath
-        else:
-            os.makedirs(dirpath)
-            return dirpath
-
-    def getFileExtention(self, mimetype):
-        ext = mimetypes.guess_extension(mimetype)
-        if ext == ".jpe":
-            ext = ".jpg"
-            return ext
-        elif ext is None:
-            ext = '.jpg'
-            return ext
-        else:
-            return ext
+    def saveProfileImage(self, filestorage):
+        buffer = filestorage.stream
+        buffer.seek(0)
+        image = Image.open(buffer)
+        image = ImageUtil.crop_image(image, 64)
+        current_app.logger.info(image)
+        dirpath = getDirectoryPath(current_app, '_settings')
+        filepath = os.path.join(dirpath, "profile.png")
+        image.save(filepath, optimize=True)
 
     @expose('/', methods=('GET','POST'))
     def index(self):
@@ -38,10 +29,7 @@ class SettingView(AuthenticateView, BaseView):
         if form.validate_on_submit():
             if form.profile_img.data:
                 file = form.profile_img.data
-                ext = self.getFileExtention(file.mimetype)
-                dirpath = self.getDirectoryPath()
-                path = os.path.join(dirpath, "profile" + ext)
-                file.save(path)
+                self.saveProfileImage(file)
 
             data = {}
             data['site_title'] = form.title.data

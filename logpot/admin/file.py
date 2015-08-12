@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 
 from logpot.admin.base import AuthenticateView
-from logpot.utils import ALLOWED_EXTENSIONS
+from logpot.utils import ImageUtil
 
 from flask import flash, redirect
 from flask.ext.admin import expose
@@ -21,4 +21,4 @@ class EntryFileView(AuthenticateView, FileAdmin):
     can_delete = False
     can_upload = False
     can_mkdir = False
-    allowed_extensions = ALLOWED_EXTENSIONS
+    allowed_extensions = ImageUtil.ALLOWED_EXTENSIONS
