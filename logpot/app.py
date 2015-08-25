@@ -4,12 +4,14 @@ import os
 
 from flask import Flask, g
 from flask.ext.wtf.csrf import CsrfProtect
+from flask.ext.admin import Admin
 from flask.ext.admin.menu import MenuLink
 
 from logpot.entry import bp as entry_bp
 from logpot.auth import bp as auth_bp
 from logpot.auth.models import User
 from logpot.ext import db, loginManager, migrate
+from logpot.admin.base import IndexView
 from logpot.admin.image import ImageModelView
 from logpot.admin.file import EntryFileView
 from logpot.admin.user import UserModelView
@@ -60,8 +62,6 @@ def configure_extentions(app):
 
     # debugtoolbar.init_app(app)
 
-    from flask.ext.admin import Admin
-    from logpot.admin.base import IndexView
     admin = Admin(
         name="Logpot",
         endpoint='admin',
