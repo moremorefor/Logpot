@@ -85,10 +85,13 @@ def loadSiteConfig(app):
     else:
         data = {}
         data["site_title"]          = "Logpot"
-        data["site_subtitle"]       = "This is a simple blog system build with Flask."
+        data["site_subtitle"]       = "This is a simple blog system based on Flask."
         data["site_author"]         = "Logpot"
         data["enable_link_github"]  = False
         data["enable_profile_img"]  = False
+        data["ogp_app_id"]          = ""
+        data["enable_twittercard"]  = False
+        data["twitter_username"]    = ""
         data["display_poweredby"]   = True
         saveSiteConfig(app, data)
 
@@ -97,6 +100,9 @@ def loadSiteConfig(app):
     app.config['site_author']         = data['site_author']
     app.config['enable_link_github']  = data['enable_link_github']
     app.config['enable_profile_img']  = data['enable_profile_img']
+    app.config["ogp_app_id"]          = data["ogp_app_id"]
+    app.config["enable_twittercard"]  = data["enable_twittercard"]
+    app.config["twitter_username"]    = data["twitter_username"]
     app.config['display_poweredby']   = data['display_poweredby']
     return data
 

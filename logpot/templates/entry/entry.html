@@ -1,5 +1,29 @@
 {% extends "layout.html" %}
 
+{% block socialinfo%}
+<head prefix="og: http://ogp.me/ns#  article: http://ogp.me/ns/article#">
+  <title>{{ entry.title }}</title>
+  <meta name="description" content="{{ entry.summary }}">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="{{ request.url }}">
+  <meta property="og:image" content="{{ url_for('img_static', filename='ogp.png') }}">
+  <meta property="og:site_name" content="{{ config.site_title }}">
+  <meta property="og:title" content="{{ entry.title }}">
+  <meta property="og:description" content="{{ entry.summary }}">
+  <meta property="fb:app_id" content="{{ config.ogp_app_id }}">
+  <meta property="fb:admins" content="{{ config.ogp_app_id }}">
+  <meta property="og:locale" content="ja_JP" />
+
+  {% if config.enable_twittercard %}
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@{{ config.twitter_username }}">
+  <meta name="twitter:title" content="{{ entry.title }}">
+  <meta name="twitter:description" content="{{ entry.summary }}">
+  <meta name="twitter:image" content="">
+  {% endif %}
+{% endblock %}
+
 {% block head %}
   <link rel="stylesheet" href="{{ url_for('bower', filename='highlightjs/styles/github.css') }}">
 {% endblock %}

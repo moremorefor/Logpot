@@ -20,10 +20,13 @@ class FileUploadForm(Form):
     )
 
 class SettingForm(Form):
-    title = StringField('Site title', validators=[DataRequired('Required field')])
-    subtitle = TextField('Site subtitle', validators=[DataRequired('Required field')])
-    author = StringField('Site author', validators=[DataRequired('Required field')])
+    title              = StringField('Site title', validators=[DataRequired('Required field')])
+    subtitle           = TextField('Site subtitle', validators=[DataRequired('Required field')])
+    author             = StringField('Site author', validators=[DataRequired('Required field')])
     enable_link_github = BooleanField('Link author name to Github account')
-    profile_img =  FileField('Profile image', validators=[])
-    enable_profile_img =  BooleanField('Enable profile image')
+    profile_img        = FileField('Profile image', validators=[])
+    enable_profile_img = BooleanField('Enable profile image')
+    ogp_app_id         = StringField('OGP app id')
+    enable_twittercard = BooleanField('Enable twitter card')
+    twitter_username   = StringField('Twitter username')
     display_poweredby =  BooleanField('Display powered by Logpot')

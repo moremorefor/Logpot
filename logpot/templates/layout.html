@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
+
+{% block socialinfo%}
+{% endblock %}
   <meta charset="UTF-8">
+  <meta name="keyword" content="">
   <link rel="apple-touch-icon-precomposed apple-touch-icon" href="{{ url_for('img_static', filename='apple-touch-icon-precomposed.png') }}">
   <link rel="shortcut icon" href="{{ url_for('img_static', filename='favicon.ico') }}">
   <meta name="viewport" content="width=device-width">
-  {% if title %}
-    <title>{{ title }} - {{ config.site_title }}</title>
-  {% else %}
-    <title>{{ config.site_title }}</title>
-  {% endif %}
 
   {% block head %}
   {% endblock %}

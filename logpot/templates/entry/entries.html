@@ -1,5 +1,31 @@
 {% extends "layout.html" %}
 
+{% block socialinfo%}
+<head prefix="og: http://ogp.me/ns#  website: http://ogp.me/ns/website#">
+  <title>{{ title }} - {{ config.site_title }}</title>
+  <meta name="description" content="{{ config.site_subtitle }}">
+
+  {% if config.ogp_app_id %}
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ request.url }}">
+  <meta property="og:image" content="{{ url_for('img_static', filename='ogp.png') }}">
+  <meta property="og:site_name" content="{{ config.site_title }}">
+  <meta property="og:title" content="{{ title }} - {{ config.site_title }}">
+  <meta property="og:description" content="{{ config.site_subtitle }}">
+  <meta property="fb:app_id" content="{{ config.ogp_app_id }}">
+  <meta property="fb:admins" content="{{ config.ogp_app_id }}">
+  <meta property="og:locale" content="ja_JP" />
+  {% endif %}
+
+  {% if config.enable_twittercard %}
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@{{ config.twitter_username }}">
+  <meta name="twitter:title" content="{{ title }} - {{ config.site_title }}">
+  <meta name="twitter:description" content="{{ config.site_subtitle }}">
+  <meta name="twitter:image" content="">
+  {% endif %}
+{% endblock %}
+
 {% block body %}
   <section class="entries clearfix">
 
