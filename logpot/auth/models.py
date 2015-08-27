@@ -29,7 +29,6 @@ class User(db.Model, TimestampMixin):
     def generate_password_hash(self, password):
         return pbkdf2_sha256.encrypt(password)
 
-    @classmethod
     def check_password_hash(self, password):
         return pbkdf2_sha256.verify(password, self.password)
 
