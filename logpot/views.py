@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 
 from logpot.app import app
-from flask import url_for, send_from_directory, redirect
+from flask import url_for, send_from_directory, redirect, request, make_response
 import os
 
 
@@ -74,3 +74,37 @@ def img_upload_thumb_l(slug, filename, ext):
 @app.route('/')
 def index():
     return redirect(url_for('entry.entries'))
+
+
+from feedgen.feed import FeedGenerator
+from logpot.entry.models import Entry
+from logpot.ext import db
+from dateutil import zoneinfo, tz
+@app.route('/rss')
+def rss():
+    tz    = zoneinfo.gettz('Asia/Tokyo')
+    title = app.config["site_title"]
+    sub_title = app.config["site_subtitle"]
+    link = request.url_root
+    feed_link = request.url
+
+    fg = FeedGenerator()
+    fg.title(title)
+    fg.description(sub_title)
+    fg.link( href=link, rel='alternate' )
+    fg.link( href=feed_link, rel='self' )
+    fg.language('ja')
+
+    entries = db.session.query(Entry).filter_by(is_published=True).outerjoin(Entry.category).order_by(Entry.id.desc())
+
+    for entry in entries:
+        fe = fg.add_entry()
+        fe.title(entry.title)
+        fe.link( href=link + 'entry/' + entry.slug, rel='alternate' )
+        fe.description(entry.body)
+        fe.pubdate(entry.created_at.replace(tzinfo=tz))
+        fe.category({'term': str(entry.category)})
+
+    response = make_response(fg.rss_str(pretty=True))
+    response.headers['Content-Type'] = 'application/xml; charset=utf-8'
+    return response
