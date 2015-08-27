@@ -55,7 +55,8 @@ def init_entry():
         body=body,
         slug=s,
         category_id=c.id,
-        user_id=u.id,)
+        user_id=u.id,
+        is_published=True)
     entries01.tags.append(t)
     db.session.add(entries01)
     db.session.commit()
