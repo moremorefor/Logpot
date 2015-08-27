@@ -32,15 +32,16 @@ class SettingView(AuthenticateView, BaseView):
                 self.saveProfileImage(file)
 
             data = {}
-            data['site_title']         = form.title.data
-            data['site_subtitle']      = form.subtitle.data
-            data['site_author']        = form.author.data
-            data['enable_link_github'] = form.enable_link_github.data
-            data['enable_profile_img'] = form.enable_profile_img.data
-            data["ogp_app_id"]         = form.ogp_app_id.data
-            data["enable_twittercard"] = form.enable_twittercard.data
-            data["twitter_username"]   = form.twitter_username.data
-            data['display_poweredby']  = form.display_poweredby.data
+            data['site_title']          = form.title.data
+            data['site_subtitle']       = form.subtitle.data
+            data['site_author']         = form.author.data
+            data['site_author_profile'] = form.author_profile.data
+            data['enable_link_github']  = form.enable_link_github.data
+            data['enable_profile_img']  = form.enable_profile_img.data
+            data["ogp_app_id"]          = form.ogp_app_id.data
+            data["enable_twittercard"]  = form.enable_twittercard.data
+            data["twitter_username"]    = form.twitter_username.data
+            data['display_poweredby']   = form.display_poweredby.data
             if saveSiteConfig(current_app, data):
                 flash('Successfully saved.')
             else:
@@ -52,6 +53,7 @@ class SettingView(AuthenticateView, BaseView):
         form.title.data               = data['site_title']
         form.subtitle.data            = data['site_subtitle']
         form.author.data              = data['site_author']
+        form.author_profile.data      = data['site_author_profile']
         form.enable_link_github.data  = data['enable_link_github']
         form.enable_profile_img.data  = data['enable_profile_img']
         form.ogp_app_id.data          = data["ogp_app_id"]

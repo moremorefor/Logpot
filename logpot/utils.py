@@ -87,6 +87,7 @@ def loadSiteConfig(app):
         data["site_title"]          = "Logpot"
         data["site_subtitle"]       = "This is a simple blog system based on Flask."
         data["site_author"]         = "Logpot"
+        data["site_author_profile"] = "This is a simple blog system based on Flask."
         data["enable_link_github"]  = False
         data["enable_profile_img"]  = False
         data["ogp_app_id"]          = ""
@@ -98,6 +99,7 @@ def loadSiteConfig(app):
     app.config['site_title']          = data['site_title']
     app.config['site_subtitle']       = data['site_subtitle']
     app.config['site_author']         = data['site_author']
+    app.config["site_author_profile"] = data["site_author_profile"]
     app.config['enable_link_github']  = data['enable_link_github']
     app.config['enable_profile_img']  = data['enable_profile_img']
     app.config["ogp_app_id"]          = data["ogp_app_id"]

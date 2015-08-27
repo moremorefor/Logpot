@@ -23,6 +23,7 @@ class SettingForm(Form):
     title              = StringField('Site title', validators=[DataRequired('Required field')])
     subtitle           = TextField('Site subtitle', validators=[DataRequired('Required field')])
     author             = StringField('Site author', validators=[DataRequired('Required field')])
+    author_profile     = StringField('Author profile', validators=[DataRequired('Required field')])
     enable_link_github = BooleanField('Link author name to Github account')
     profile_img        = FileField('Profile image', validators=[])
     enable_profile_img = BooleanField('Enable profile image')
