@@ -6,9 +6,9 @@ Logpot is a simple blog system build with flask.
 ## Getting Started
 _It will need Python 3.x to get started._
 
-Clone the repository
+Clone this repository
 ```
-$ git clone https://github.com/mrjoes/flask-admin.git
+$ git clone git@github.com:moremorefor/Logpot.git
 $ cd logpot
 ```
 
@@ -27,7 +27,12 @@ $ bower install
 $ gulp install
 ```
 
-initialize database
+Edit database URI in logpot/config.py (required: PostgreSQL)
+```
+SQLALCHEMY_DATABASE_URI = 'postgresql://username:password@localhost/logpot'
+```
+
+Initialize database
 ```
 $ python manage.py initialize
 ```

@@ -13,3 +13,4 @@ honcho==0.5.0
 misaka==1.0.2
 passlib==1.6.2
 feedgen==0.3.1
+psycopg2==2.6.1

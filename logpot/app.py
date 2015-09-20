@@ -107,9 +107,6 @@ def createDirectory(app):
     if not os.path.exists(app.config['UPLOAD_DIRECTORY']):
         os.makedirs(app.config['UPLOAD_DIRECTORY'])
 
-    if not os.path.exists(app.config['DATABASE_DIRECTORY']):
-        os.makedirs(app.config['DATABASE_DIRECTORY'])
-
     if not os.path.exists(app.config['LOG_DIRECTORY']):
         os.makedirs(app.config['LOG_DIRECTORY'])
 
