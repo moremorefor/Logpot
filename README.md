@@ -27,7 +27,7 @@ $ bower install
 $ gulp install
 ```
 
-Edit database URI in logpot/config.py (required: PostgreSQL)
+Edit database URI in config.py
 ```
 SQLALCHEMY_DATABASE_URI = 'postgresql://username:password@localhost/logpot'
 ```
