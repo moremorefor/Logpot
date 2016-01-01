@@ -95,26 +95,20 @@ class TagModelView(AuthenticateView, CommonModelView):
 ##  Utils
 ##===================================================================
 
-
 class BleepRenderer(misaka.HtmlRenderer, misaka.SmartyPants):
 
-    SLUG = ""
+    slug = ""
 
-    @classmethod
-    def setSlug(self, slug):
-        self.SLUG = slug
-
-    # def __init__(self, *args, **kwargs):
-    #     self.dummy = args.pop("dummy")
-    #     misaka.HtmlRenderer.__init__(self, *args, **kwargs)
+    def set_slug(self, slug):
+        self.slug = slug
 
     def link(self, link, title, content):
-        return '\n<a href="%(link)s" target="_blank">%(content)s - %(title)s</a>\n' % \
+        return '\n<a href="%(link)s" title="%(title)s" target="_blank">%(content)s</a>\n' % \
             {'link': link, 'content': content, 'title': title}
 
     def image(self, link, title, alt_text):
         return '\n<img src="/entry/%(slug)s/%(link)s" alt="%(alt_text)s" title="%(title)s"/>\n' % \
-            {'link': link, 'title': title, 'alt_text': alt_text, 'slug': self.SLUG}
+            {'link': link, 'title': title, 'alt_text': alt_text, 'slug': self.slug}
 
     def block_code(self, text, lang):
         if not lang:
@@ -125,8 +119,8 @@ class BleepRenderer(misaka.HtmlRenderer, misaka.SmartyPants):
 
 
 def renderMarkdown(slug, body):
-    BleepRenderer.setSlug(slug)
     renderer = BleepRenderer()
+    renderer.set_slug(slug)
     misaka_md = misaka.Markdown(
         renderer,
         extensions=misaka.EXT_FENCED_CODE | misaka.EXT_NO_INTRA_EMPHASIS)
