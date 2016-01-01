@@ -5,27 +5,6 @@ from flask import url_for, send_from_directory, redirect, request, make_response
 import os
 
 
-@app.context_processor
-def override_url_for():
-    return dict(url_for=dated_url_for)
-
-
-def dated_url_for(endpoint, **values):
-    if endpoint == 'js_static':
-        filename = values.get('filename', None)
-        if filename:
-            file_path = os.path.join(app.root_path,
-                                     'static/js', filename)
-            values['q'] = int(os.stat(file_path).st_mtime)
-    elif endpoint == 'css_static':
-        filename = values.get('filename', None)
-        if filename:
-            file_path = os.path.join(app.root_path,
-                                     'static/css', filename)
-            values['q'] = int(os.stat(file_path).st_mtime)
-    return url_for(endpoint, **values)
-
-
 @app.route('/static/css/<path:filename>')
 def css_static(filename):
     return send_from_directory(app.root_path + '/static/css/', filename)
