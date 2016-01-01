@@ -1,13 +1,14 @@
-gulp     = require 'gulp'
-imagemin = require 'gulp-imagemin'
-config   = require '../config'
-paths    = config.path
+gulp             = require 'gulp'
+imageminPngquant = require 'imagemin-pngquant'
+config           = require '../config'
+paths            = config.path
 
 gulp.task 'imagemin', ->
-  imageminOptions =
-    optimizationLevel: 7
+  pngquantOptions =
+    quality: '80-90'
+    speed: 1
 
   gulp
     .src "#{paths.src.img}"
-    .pipe imagemin( imageminOptions )
+    .pipe imageminPngquant( pngquantOptions )()
     .pipe gulp.dest( "#{paths.dest.img}" )
