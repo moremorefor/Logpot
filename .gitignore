@@ -19,7 +19,6 @@ bower_components
 
 .bundle
 vendor
-Gemfile.lock
 
 **/plugin/bourbon
 **/plugin/neat
