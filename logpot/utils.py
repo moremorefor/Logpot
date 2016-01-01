@@ -79,7 +79,7 @@ def getDirectoryPath(app, directory):
 def loadSiteConfig(app):
     configfile = os.path.join(app.root_path, 'config.yml')
     if os.path.exists(configfile):
-        f = open(configfile, 'r')
+        f = open(configfile, 'r', encoding='utf-8')
         data = yaml.load(f)
         f.close()
     else:
@@ -110,7 +110,7 @@ def loadSiteConfig(app):
 
 def saveSiteConfig(app, data):
     configfile = os.path.join(app.root_path, 'config.yml')
-    f = open(configfile, 'w')
+    f = open(configfile, 'w', encoding='utf-8')
     yaml.dump(
         data,
         f,
