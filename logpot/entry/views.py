@@ -33,7 +33,7 @@ def formatDatetime(datetime):
 @bp.route('/')
 @bp.route('/<int:page>', methods=['GET'])
 def entries(page=1):
-    p = Entry.query.filter_by(is_published=True).outerjoin(Entry.category).order_by(Entry.id.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], False)
+    p = Entry.query.filter_by(is_published=True).outerjoin(Entry.category).order_by(Entry.id.desc()).paginate(page, current_app.config['LOGPOT_POSTS_PER_PAGE'], False)
     entries = p.items
     if len(entries) == 0:
         print('There are no entries.')

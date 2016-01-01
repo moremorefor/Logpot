@@ -27,11 +27,6 @@ $ bower install
 $ gulp install
 ```
 
-Edit database URI in config.py
-```
-SQLALCHEMY_DATABASE_URI = 'postgresql://username:password@localhost/logpot'
-```
-
 Initialize database
 ```
 $ python manage.py initialize
@@ -40,4 +35,14 @@ $ python manage.py initialize
 run
 ```
 $ honcho start
+```
+
+### Set environment variables
+If you want to change config, create `.env` file.
+```
+$ cat >.env <<EOF
+LOGPOT_CONFIG=production
+SECRET_KEY=hard to guess string
+DATABASE_URI=postgresql://username:password@localhost/logpot
+EOF
 ```

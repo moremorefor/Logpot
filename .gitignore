@@ -6,6 +6,7 @@ Thumbs.db
 *.db
 .idea
 .sass-cache
+.env
 
 migrations
 upload

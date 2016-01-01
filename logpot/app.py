@@ -20,12 +20,13 @@ from logpot.admin.setting import SettingView
 from logpot.image.models import Image
 from logpot.entry.models import Entry, Category, Tag
 from logpot.utils import loadSiteConfig
+from config import config
 
 
-def create_app(config=None):
+def create_app(config_name):
     app = Flask("logpot")
 
-    loadConfig(app)
+    loadConfig(app, config_name)
 
     CsrfProtect(app)
 
@@ -38,8 +39,9 @@ def create_app(config=None):
 
     return app
 
-def loadConfig(app):
-    app.config.from_object('config')
+def loadConfig(app, config_name):
+    app.config.from_object(config[config_name])
+    config[config_name].init_app(app)
     data = loadSiteConfig(app)
 
 def configure_blueprints(app):
@@ -59,8 +61,6 @@ def configure_extentions(app):
         return User.query.get(int(userid))
 
     migrate.init_app(app, db)
-
-    # debugtoolbar.init_app(app)
 
     admin = Admin(
         name="Logpot",
@@ -111,4 +111,4 @@ def createDirectory(app):
         os.makedirs(app.config['LOG_DIRECTORY'])
 
 
-app = create_app()
+app = create_app(os.environ.get('LOGPOT_CONFIG') or 'default')

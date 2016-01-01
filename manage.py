@@ -11,7 +11,14 @@ from db_create import (
 )
 from flask.ext.migrate import MigrateCommand
 from logpot.app import app
+import os
 
+if os.path.exists('.env'):
+    print('Importing environment from .env...')
+    for line in open('.env'):
+        var = line.strip().split('=')
+        if len(var) == 2:
+            os.environ[var[0]] = var[1]
 
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
@@ -19,7 +26,7 @@ manager.add_command('db', MigrateCommand)
 
 @manager.command
 def run():
-    app.run(debug=True, threaded=True)
+    app.run(threaded=True)
 
 
 @manager.command
