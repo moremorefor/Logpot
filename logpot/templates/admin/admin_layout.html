@@ -3,6 +3,8 @@
 
 {% block head_tail %}
   {{ super() }}
+  <link rel="apple-touch-icon-precomposed apple-touch-icon" href="{{ url_for('img_static', filename='apple-touch-icon-precomposed.png') }}">
+  <link rel="shortcut icon" href="{{ url_for('img_static', filename='favicon.ico') }}">
   <link href="{{ url_for('css_static', filename='admin.css') }}" rel="stylesheet">
 {% endblock %}
 

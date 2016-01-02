@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 
 from logpot.app import app
-from flask import url_for, send_from_directory, redirect, request, make_response
+from flask import url_for, send_from_directory, redirect, request, make_response, render_template
 import os
 
 
@@ -53,6 +53,14 @@ def img_upload_thumb_l(slug, filename, ext):
 @app.route('/')
 def index():
     return redirect(url_for('entry.entries'))
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    return render_template('500.html'), 500
 
 
 from feedgen.feed import FeedGenerator

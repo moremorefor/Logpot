@@ -1,34 +1,18 @@
 //
-// Footer
+// Social links
 // --------------------------------------------------
 
 .footer
-  margin: 30px auto 0
+  padding: 0 0 30px 0
+  border-bottom: 1px solid $border-color
+
+.sociallinks
+  margin: 30px auto
   max-width: $medium-screen
-  padding: 28px 28px 60px
   +media($medium-screen)
-    margin: 40px auto 0
-    padding: 10px 60px 100px
-  +media($large-screen)
-    padding: 10px 20px 100px
+    margin: 60px auto 30px
 
-.profile
-  margin: 0 0 20px 0
-
-.profile__img
-  border: 1px solid #cccccc
-  border-radius: 64px
-  float: left
-
-.profile__info
-  padding: 0 0 0 80px
-
-.profile__name
-  font-size: 24px
-  margin: 0 0 8px 0
-  padding: 2px 0 0 0
-  a
-    color: $text-color
-
-.profile__description
-  padding: 0px 0 0 0
+  .sociallinks__item
+    iframe
+      float: left
+      margin: 0 10px 0 0
