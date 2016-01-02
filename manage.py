@@ -1,5 +1,13 @@
 #-*- coding: utf-8 -*-
 
+import os
+if os.path.exists('.env'):
+    print('Importing environment from .env...')
+    for line in open('.env'):
+        var = line.strip().split('=')
+        if len(var) == 2:
+            os.environ[var[0]] = var[1]
+
 from flask.ext.script import Manager, prompt, prompt_bool, prompt_pass
 from db_create import (
     init_db,
@@ -11,14 +19,6 @@ from db_create import (
 )
 from flask.ext.migrate import MigrateCommand
 from logpot.app import app
-import os
-
-if os.path.exists('.env'):
-    print('Importing environment from .env...')
-    for line in open('.env'):
-        var = line.strip().split('=')
-        if len(var) == 2:
-            os.environ[var[0]] = var[1]
 
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
