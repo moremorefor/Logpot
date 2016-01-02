@@ -35,15 +35,11 @@
       <time class="header__updated">Updated: {{ entry.updated }}</time>
       {% if entry.category %}
       <span class="header__category">{{"Category: {cat}".format(cat=entry.category.name)}}</span>
-      {% else %}
-      <span class="header__category">Category: None</span>
       {% endif %}
       {% if entry.tags %}
       {% for tag in entry.tags %}
       <span class="header__tag">{{"Tags: {tag}".format(tag=tag.name)}}</span>
       {% endfor %}
-      {% else %}
-      <span class="header__tag">Category: None</span>
       {% endif %}
     </div>
   </header>

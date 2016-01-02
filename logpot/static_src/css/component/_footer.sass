@@ -3,12 +3,14 @@
 // --------------------------------------------------
 
 .footer
-  margin: 30px auto 30px
+  margin: 30px auto 0
   max-width: $medium-screen
-  padding: 28px 28px 0
+  padding: 28px 28px 60px
   +media($medium-screen)
-    margin: 40px auto 40px
-    padding: 10px 10px 0
+    margin: 40px auto 0
+    padding: 10px 60px 100px
+  +media($large-screen)
+    padding: 10px 20px 100px
 
 .profile
   margin: 0 0 20px 0

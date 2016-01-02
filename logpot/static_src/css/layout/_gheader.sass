@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 .gheader
-  margin: 30px auto 10px
+  margin: 30px auto 20px
   max-width: $medium-screen
   padding: 28px 28px 0
   +media($medium-screen)
@@ -12,17 +12,22 @@
 
 .gheader__title
   font-family: $font-webfont
-  font-size: 32px
+  font-size: 36px
   text-align: center
   margin: 0 0 20px 0
   +media($medium-screen)
-    font-size: 40px
+    font-size: 54px
+    letter-spacing: 1px
 
 .gheader__title a
   color: $header-text-color
 
+.gheader__title a:hover
+  text-decoration: none
+
 .gheader__subtitle
   font-family: $font-webfont
   font-size: 16px
+  font-weight: bold
   text-align: center
   color: $text-light-color
