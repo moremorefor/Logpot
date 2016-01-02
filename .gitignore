@@ -3,7 +3,7 @@ Thumbs.db
 
 *.pyc
 *.log
-*.db
+*.sqlite
 .idea
 .sass-cache
 .env
