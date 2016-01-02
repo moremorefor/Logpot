@@ -16,8 +16,8 @@ class Entry(db.Model, TimestampMixin):
     __tablename__ = 'entries'
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(400), nullable=False)
-    summary = db.Column(db.Text, nullable=False)
+    title = db.Column(db.String(140), nullable=False)
+    summary = db.Column(db.String(140), nullable=False)
     md_body = db.Column(db.Text, nullable=False)
     body = db.Column(db.Text, nullable=True)
     slug = db.Column(db.String, unique=True, nullable=False)

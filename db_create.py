@@ -50,7 +50,7 @@ def init_entry():
 
     entries01 = Entry(
         title=u'Example article',
-        summary=u'Curabitur blandit tempus porttitor. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec sed odio dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.',
+        summary=u'Curabitur blandit tempus porttitor. Maecenas sed diam eget risus varius blandit sit amet non magna.',
         md_body=md_body,
         body=body,
         slug=s,
