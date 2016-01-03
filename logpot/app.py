@@ -105,10 +105,10 @@ def configure_logging(app):
 
 def createDirectory(app):
     if not os.path.exists(app.config['UPLOAD_DIRECTORY']):
-        os.makedirs(app.config['UPLOAD_DIRECTORY'])
+        os.makedirs(app.config['UPLOAD_DIRECTORY'], mode=0o755)
 
     if not os.path.exists(app.config['LOG_DIRECTORY']):
-        os.makedirs(app.config['LOG_DIRECTORY'])
+        os.makedirs(app.config['LOG_DIRECTORY'], mode=0o755)
 
 
 app = create_app(os.environ.get('LOGPOT_CONFIG') or 'default')

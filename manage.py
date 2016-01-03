@@ -11,7 +11,7 @@ if os.path.exists('.env'):
 from flask.ext.script import Manager, prompt, prompt_bool, prompt_pass
 from db_create import (
     init_db,
-    drop_db,
+    drop_all,
     init_admin_user,
     init_entry,
     init_category,
@@ -31,10 +31,12 @@ def run():
 
 @manager.command
 def initialize():
-    if prompt_bool("Are you sure you want to create DB and initialize?"):
-        drop_db()
-        init_db()
-        if init_admin():
+    if prompt_bool("Are you sure you want to initialize all ?"):
+        admin = init_admin()
+        if admin:
+            drop_all(app)
+            init_db()
+            init_admin_user(admin["name"], admin["email"], admin["password"])
             init_category()
             init_tag()
             init_entry()
@@ -47,12 +49,11 @@ def init_admin():
     password = prompt_pass('[?] input password: ')
     confirm_password = prompt_pass('[?] input password again: ')
 
-    if not password == confirm_password:
+    if password != confirm_password:
         print('Password does not match.')
         return False
     else:
-        init_admin_user(name, email, password)
-        return True
+        return {"name":name, "email":email, "password":password}
 
 
 if __name__ == "__main__":

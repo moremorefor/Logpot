@@ -5,14 +5,26 @@ from logpot.entry.models import Entry, Category, Tag
 from logpot.app import app
 from logpot.ext import db
 from logpot.admin.entry import renderMarkdown
+import os
+import shutil
 
 
 def init_db():
     db.create_all()
 
 
-def drop_db():
+def drop_all(app):
     db.drop_all()
+    upload_dir = app.config['UPLOAD_DIRECTORY']
+    log_dir = app.config['LOG_DIRECTORY']
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    config_file = os.path.join(basedir, 'logpot', 'config.yml')
+    if os.path.exists(upload_dir):
+        shutil.rmtree(upload_dir)
+    if os.path.exists(log_dir):
+        shutil.rmtree(log_dir)
+    if os.path.exists(config_file):
+        os.remove(config_file)
 
 
 def init_admin_user(name, email, password):
