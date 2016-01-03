@@ -25,6 +25,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
     DEBUG_TB_PROFILER_ENABLED = True
     DEBUG_TB_TEMPLATE_EDITOR_ENABLED = True
+    DEBUG_TB_INTERCEPT_REDIRECTS = False
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URI') or 'sqlite:///' + os.path.join(basedir, 'logpot-dev.sqlite')
 
     @classmethod
