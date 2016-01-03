@@ -8,12 +8,11 @@
   {% if config.ogp_app_id %}
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ request.url }}">
-  <meta property="og:image" content="{{ url_for('img_static', filename='ogp.png') }}">
+  <meta property="og:image" content="{{ url_for('img_static', filename='ogp.png', _external=True) }}">
   <meta property="og:site_name" content="{{ config.site_title }}">
   <meta property="og:title" content="{{ title }} - {{ config.site_title }}">
   <meta property="og:description" content="{{ config.site_subtitle }}">
   <meta property="fb:app_id" content="{{ config.ogp_app_id }}">
-  <meta property="fb:admins" content="{{ config.ogp_app_id }}">
   <meta property="og:locale" content="ja_JP" />
   {% endif %}
 

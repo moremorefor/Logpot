@@ -5,15 +5,16 @@
   <title>{{ entry.title }}</title>
   <meta name="description" content="{{ entry.summary }}">
 
+  {% if config.ogp_app_id %}
   <meta property="og:type" content="article">
   <meta property="og:url" content="{{ request.url }}">
-  <meta property="og:image" content="{{ url_for('img_static', filename='ogp.png') }}">
+  <meta property="og:image" content="{{ url_for('img_static', filename='ogp.png', _external=True) }}">
   <meta property="og:site_name" content="{{ config.site_title }}">
   <meta property="og:title" content="{{ entry.title }}">
   <meta property="og:description" content="{{ entry.summary }}">
   <meta property="fb:app_id" content="{{ config.ogp_app_id }}">
-  <meta property="fb:admins" content="{{ config.ogp_app_id }}">
   <meta property="og:locale" content="ja_JP" />
+  {% endif %}
 
   {% if config.enable_twittercard %}
   <meta name="twitter:card" content="summary">
