@@ -15,7 +15,6 @@
     "gulp-plumber": "^0.6.6",
     "gulp-ruby-sass": "^1.0.0-alpha.3",
     "gulp-shell": "^0.3.0",
-    "imagemin-pngquant": "^4.2.0",
     "require-dir": "^0.1.0",
     "run-sequence": "^1.0.2"
   }
