@@ -91,6 +91,7 @@ def loadSiteConfig(app):
         data["enable_link_github"]  = False
         data["enable_profile_img"]  = False
         data["ogp_app_id"]          = ""
+        data["ga_tracking_id"]      = ""
         data["enable_twittercard"]  = False
         data["twitter_username"]    = ""
         data["display_poweredby"]   = True
@@ -103,6 +104,7 @@ def loadSiteConfig(app):
     app.config['enable_link_github']  = data['enable_link_github']
     app.config['enable_profile_img']  = data['enable_profile_img']
     app.config["ogp_app_id"]          = data["ogp_app_id"]
+    app.config["ga_tracking_id"]      = data["ga_tracking_id"]
     app.config["enable_twittercard"]  = data["enable_twittercard"]
     app.config["twitter_username"]    = data["twitter_username"]
     app.config['display_poweredby']   = data['display_poweredby']

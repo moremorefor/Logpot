@@ -28,6 +28,7 @@ class SettingForm(Form):
     profile_img        = FileField('Profile image', validators=[])
     enable_profile_img = BooleanField('Enable profile image')
     ogp_app_id         = StringField('OGP app id')
+    ga_tracking_id     = StringField('Google Analytics Tracking ID')
     enable_twittercard = BooleanField('Enable twitter card')
     twitter_username   = StringField('Twitter username')
     display_poweredby =  BooleanField('Display powered by Logpot')

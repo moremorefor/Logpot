@@ -39,6 +39,7 @@ class SettingView(AuthenticateView, BaseView):
             data['enable_link_github']  = form.enable_link_github.data
             data['enable_profile_img']  = form.enable_profile_img.data
             data["ogp_app_id"]          = form.ogp_app_id.data
+            data["ga_tracking_id"]      = form.ga_tracking_id.data
             data["enable_twittercard"]  = form.enable_twittercard.data
             data["twitter_username"]    = form.twitter_username.data
             data['display_poweredby']   = form.display_poweredby.data
@@ -57,6 +58,7 @@ class SettingView(AuthenticateView, BaseView):
         form.enable_link_github.data  = data['enable_link_github']
         form.enable_profile_img.data  = data['enable_profile_img']
         form.ogp_app_id.data          = data["ogp_app_id"]
+        form.ga_tracking_id.data      = data["ga_tracking_id"]
         form.enable_twittercard.data  = data["enable_twittercard"]
         form.twitter_username.data    = data["twitter_username"]
         form.display_poweredby.data   = data['display_poweredby']
