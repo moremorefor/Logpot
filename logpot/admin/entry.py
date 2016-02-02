@@ -1,13 +1,17 @@
 #-*- coding: utf-8 -*-
 
 from logpot.admin.base import AuthenticateView, CommonModelView, checkFieldEmpty
+from logpot.entry.models import Entry
+from logpot.ext import db
 
-from flask import flash
+from flask import flash, url_for
 from flask.ext.login import current_user
 from flask_admin.form import rules
 # from logpot import rules
 from flask.ext.admin.contrib.sqla.view import log
 from flask.ext.admin.babel import gettext
+
+from jinja2 import Markup
 
 import misaka
 import pygments
@@ -33,6 +37,17 @@ class EntryModelView(AuthenticateView, CommonModelView):
         'updated_at'
     )
     column_searchable_list = ("title", "summary", "slug")
+
+    def _link_title(view, context, model, name):
+        e = db.session.query(Entry).filter_by(id=model.id).one()
+
+        return Markup('<a href="{0}" target="new">{1}</a>'.format(
+            url_for('entry.entry', slug=e.slug), e.title
+        ))
+
+    column_formatters = {
+        'title': _link_title
+    }
 
     form_args = dict(
         title=dict(validators=[checkFieldEmpty]),
