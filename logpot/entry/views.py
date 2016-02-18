@@ -58,7 +58,8 @@ def entry(slug):
             flash('This article is not published.')
         entry.updated = formatDatetime(entry.updated_at)
         if len(entry.images) > 0:
-            imagefile = entry.images[0].path
+            num = len(entry.images) - 1
+            imagefile = entry.images[num].path
             entry.ogp_image = url_for('img_upload', slug=entry.slug, filename=imagefile, _external=True)
         return render_template('entry/entry.html', entry=entry, this_url=url_for('.entry', slug=slug))
     else:
