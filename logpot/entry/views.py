@@ -41,7 +41,7 @@ def entries(page=1):
         abort(404)
     else:
         for e in entries:
-            e.updated = formatDatetime(e.updated_at)
+            e.created = formatDatetime(e.created_at)
     return render_template('entry/entries.html', title='Home', entries=entries, pagination=p)
 
 
@@ -56,7 +56,7 @@ def entry(slug):
     if current_user.is_authenticated() or entry.is_published:
         if not entry.is_published:
             flash('This article is not published.')
-        entry.updated = formatDatetime(entry.updated_at)
+        entry.created = formatDatetime(entry.created_at)
         if len(entry.images) > 0:
             num = len(entry.images) - 1
             imagefile = entry.images[num].path

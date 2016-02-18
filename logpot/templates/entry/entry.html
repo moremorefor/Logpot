@@ -37,7 +37,7 @@
   <header class="header">
     <h1 class="header__title">{{entry.title}}</h2>
     <div class="header__info">
-      <time class="header__updated">Updated: {{ entry.updated }}</time>
+      <time class="header__updated">Created: {{ entry.created }}</time>
       {% if entry.category %}
       <span class="header__category">{{"Category: {cat}".format(cat=entry.category.name)}}</span>
       {% endif %}

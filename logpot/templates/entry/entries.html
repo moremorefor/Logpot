@@ -32,7 +32,7 @@
     <div class="summary">
       <h2 class="summary__title"><a href="{{url_for('.entry', slug=entry.slug)}}">{{entry.title}}</a></h2>
       <div class="summary__info">
-        <time class="summary__updated">{{entry.updated}}</time>
+        <time class="summary__updated">{{entry.created}}</time>
         {% if entry.category %}
         <span class="summary__category">{{'Category: {cat}'.format(cat=entry.category.name)}}</span>
         {% else %}
