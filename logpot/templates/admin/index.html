@@ -1,9 +1,28 @@
 {% extends "admin/master.html" %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.css" />
+{% endblock %}
+
 {% block body %}
   <article>
     <section>
-      <h4>Welcome to Logpot admin.</h4>
+      <h3>Welcome to Logpot admin.</h3>
       <p>This is a simple blog system build with Flask.</p>
     </section>
+    <section>
+      <h3>Activity</h2>
+      <div id="heatmapContainer">
+        <div id="heatmap"></div>
+      </div>
+    </section>
   </article>
+{% endblock %}
+
+{% block tail %}
+  {{ super() }}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.min.js"></script>
+  <script src="{{ url_for('js_static', filename='heatmap.js') }}"></script>
 {% endblock %}

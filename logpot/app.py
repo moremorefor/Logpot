@@ -2,13 +2,15 @@
 
 import os
 
-from flask import Flask, g
+from flask import Flask, g, Blueprint
 from flask.ext.wtf.csrf import CsrfProtect
 from flask.ext.admin import Admin
 from flask.ext.admin.menu import MenuLink
 
 from logpot.entry import bp as entry_bp
 from logpot.auth import bp as auth_bp
+from logpot.api import bp as api_bp
+
 from logpot.auth.models import User
 from logpot.ext import db, loginManager, migrate
 from logpot.admin.base import IndexView
@@ -44,9 +46,11 @@ def loadConfig(app, config_name):
     config[config_name].init_app(app)
     data = loadSiteConfig(app)
 
+
 def configure_blueprints(app):
     app.register_blueprint(entry_bp, url_prefix='/entry')
     app.register_blueprint(auth_bp, url_prefix='/auth')
+    app.register_blueprint(api_bp, url_prefix='/api/v1')
 
 
 def configure_extentions(app):
