@@ -6,8 +6,6 @@ Logpot is a simple blog system build with flask.
 
 ## Getting Started
 
-_It will need Python 3.x to get started._
-
 Clone this repository
 
 ```
@@ -18,8 +16,8 @@ $ cd logpot
 Create and activate a virtual environment
 
 ```
-$ python -m venv .venv
-$ source .venv/bin/activate
+$ python -m venv /path/to/new/virtual/env
+$ source /path/to/new/virtual/env/bin/activate
 ```
 
 Setup
@@ -28,8 +26,8 @@ Setup
 $ pip install -r ./requirements/dev.txt
 $ bundle install --path vendor/bundle
 $ yarn
-$ bower install
-$ gulp install
+$ npx bower install
+$ npx gulp install
 ```
 
 Initialize database
