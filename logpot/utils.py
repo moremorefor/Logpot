@@ -80,7 +80,7 @@ def loadSiteConfig(app):
     configfile = os.path.join(app.root_path, 'config.yml')
     if os.path.exists(configfile):
         f = open(configfile, 'r', encoding='utf-8')
-        data = yaml.load(f)
+        data = yaml.load(f, Loader=yaml.SafeLoader)
         f.close()
     else:
         data = {}

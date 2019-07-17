@@ -3,9 +3,9 @@
 import os
 
 from flask import Flask, g, Blueprint
-from flask.ext.wtf.csrf import CsrfProtect
-from flask.ext.admin import Admin
-from flask.ext.admin.menu import MenuLink
+from flask_wtf.csrf import CSRFProtect
+from flask_admin import Admin
+from flask_admin.menu import MenuLink
 
 from logpot.entry import bp as entry_bp
 from logpot.auth import bp as auth_bp
@@ -30,7 +30,7 @@ def create_app(config_name):
 
     loadConfig(app, config_name)
 
-    CsrfProtect(app)
+    CSRFProtect(app)
 
     createDirectory(app)
 
@@ -70,7 +70,7 @@ def configure_extentions(app):
         name="Logpot",
         endpoint='admin',
         index_view=IndexView(name="Index"),
-        base_template='admin/admin_layout.html',
+        base_template='admin/admin_layout.jinja',
         template_mode='bootstrap3'
     )
 

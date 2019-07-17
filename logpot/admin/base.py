@@ -1,10 +1,10 @@
 #-*- coding: utf-8 -*-
 
-from flask.ext.admin import expose, AdminIndexView, BaseView
-from flask.ext.admin.contrib.sqla import ModelView
+from flask_admin import expose, AdminIndexView, BaseView
+from flask_admin.contrib.sqla import ModelView
 
 from flask import flash, current_app, redirect, url_for
-from flask.ext.login import login_required, current_user
+from flask_login import login_required, current_user
 
 
 def flash_errors(form):

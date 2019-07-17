@@ -7,8 +7,8 @@ from logpot.ext import db
 
 from flask import redirect, current_app, abort, flash
 from flask import render_template, url_for
-from flask.ext.sqlalchemy import Pagination
-from flask.ext.login import current_user
+from flask_sqlalchemy import Pagination
+from flask_login import current_user
 
 import calendar
 
@@ -53,7 +53,7 @@ def entry(slug):
         print('No such entry.')
         abort(404)
 
-    if current_user.is_authenticated() or entry.is_published:
+    if current_user.is_authenticated or entry.is_published:
         if not entry.is_published:
             flash('This article is not published.')
         entry.created = formatDatetime(entry.created_at)

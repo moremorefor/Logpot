@@ -8,7 +8,7 @@ from logpot.admin.forms import FileUploadForm
 from logpot.utils import ImageUtil, getDirectoryPath
 
 from flask import current_app, flash, url_for, request, redirect
-from flask.ext.admin import expose
+from flask_admin import expose
 
 from werkzeug.utils import secure_filename
 from jinja2 import Markup

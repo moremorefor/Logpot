@@ -4,9 +4,9 @@ from logpot.admin.base import AuthenticateView
 from logpot.utils import ImageUtil
 
 from flask import flash, redirect
-from flask.ext.admin import expose
-from flask.ext.admin.contrib.fileadmin import FileAdmin
-from flask.ext.admin.babel import gettext
+from flask_admin import expose
+from flask_admin.contrib.fileadmin import FileAdmin
+from flask_admin.babel import gettext
 
 import os
 import os.path as op

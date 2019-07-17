@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 
 from flask import current_app, flash, url_for, request
-from flask.ext.admin import expose, BaseView
+from flask_admin import expose, BaseView
 
 from logpot.admin.base import AuthenticateView, flash_errors
 from logpot.admin.forms import SettingForm

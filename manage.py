@@ -8,7 +8,7 @@ if os.path.exists('.env'):
         if len(var) == 2:
             os.environ[var[0]] = var[1]
 
-from flask.ext.script import Manager, prompt, prompt_bool, prompt_pass
+from flask_script import Manager, prompt, prompt_bool, prompt_pass
 from db_create import (
     init_db,
     drop_all,
@@ -17,7 +17,7 @@ from db_create import (
     init_category,
     init_tag
 )
-from flask.ext.migrate import MigrateCommand
+from flask_migrate import MigrateCommand
 from logpot.app import app
 
 manager = Manager(app)

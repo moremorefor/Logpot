@@ -1,25 +1,25 @@
 #-*- coding: utf-8 -*-
 
-from flask.ext.wtf import Form
-from flask.ext.wtf.file import FileRequired, FileField
+from flask_wtf import FlaskForm
+from flask_wtf.file import FileRequired, FileField
 from wtforms import StringField, TextField, BooleanField, FileField
 from wtforms.validators import DataRequired
-from flask.ext.admin.contrib.sqla.fields import QuerySelectField
-from flask.ext.login import current_user
+from flask_admin.contrib.sqla.fields import QuerySelectField
+from flask_login import current_user
 
 from logpot.ext import db
 from logpot.entry.models import Entry
 
 import re
 
-class FileUploadForm(Form):
+class FileUploadForm(FlaskForm):
     uploadfile = FileField('image')
     name = StringField('Filename')
     entry_id = QuerySelectField(
         query_factory=lambda: db.session.query(Entry).filter_by(author=current_user).all()
     )
 
-class SettingForm(Form):
+class SettingForm(FlaskForm):
     title              = StringField('Site title', validators=[DataRequired('Required field')])
     subtitle           = TextField('Site subtitle', validators=[DataRequired('Required field')])
     author             = StringField('Site author', validators=[DataRequired('Required field')])

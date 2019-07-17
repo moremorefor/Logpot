@@ -5,11 +5,11 @@ from logpot.entry.models import Entry
 from logpot.ext import db
 
 from flask import flash, url_for
-from flask.ext.login import current_user
+from flask_login import current_user
 from flask_admin.form import rules
 # from logpot import rules
-from flask.ext.admin.contrib.sqla.view import log
-from flask.ext.admin.babel import gettext
+from flask_admin.contrib.sqla.view import log
+from flask_admin.babel import gettext
 
 from jinja2 import Markup
 
@@ -110,7 +110,7 @@ class TagModelView(AuthenticateView, CommonModelView):
 ##  Utils
 ##===================================================================
 
-class BleepRenderer(misaka.HtmlRenderer, misaka.SmartyPants):
+class BleepRenderer(misaka.HtmlRenderer):
 
     slug = ""
 
@@ -139,7 +139,7 @@ def renderMarkdown(slug, body):
     misaka_md = misaka.Markdown(
         renderer,
         extensions=misaka.EXT_FENCED_CODE | misaka.EXT_NO_INTRA_EMPHASIS)
-    misaka_content = misaka_md.render(body)
+    misaka_content = misaka_md(body)
     return misaka_content
 
 

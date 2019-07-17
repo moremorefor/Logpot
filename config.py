@@ -9,6 +9,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
     SQLALCHEMY_RECORD_QUERIES = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
     CSRF_ENABLED = True
     UPLOAD_DIRECTORY = os.path.join(basedir, 'upload')
     LOG = 'logpot.log'
