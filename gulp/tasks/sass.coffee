@@ -17,7 +17,7 @@ plugins = [
 
 ]
 
-gulp.task 'sass2', ->
+gulp.task 'sass_compile2', ->
   return gulp.src("#{paths.src.sass2}")
     .pipe(sass().on('error', sass.logError))
     .pipe postcss(plugins)
@@ -25,10 +25,15 @@ gulp.task 'sass2', ->
     .pipe filter('**/*.css')
     .pipe browserSync.reload({stream:true})
 
-gulp.task 'sass', gulp.series 'sass2', ->
+gulp.task 'sass_compile1', ->
   return gulp.src("#{paths.src.sass}")
     .pipe(sass().on('error', sass.logError))
     .pipe postcss(plugins)
     .pipe gulp.dest( "#{paths.dest.sass}" )
     .pipe filter('**/*.css')
     .pipe browserSync.reload({stream:true})
+
+gulp.task 'sass', gulp.series(
+  'sass_compile1',
+  'sass_compile2'
+)
