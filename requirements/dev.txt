@@ -13,5 +13,5 @@ PyYAML==5.1.1
 honcho==1.0.1
 misaka==2.1.1
 passlib==1.7.1
-feedgen==0.7.0
+feedgen==0.9.0
 psycopg2==2.8.3
