@@ -9,7 +9,7 @@ Flask-WTF==0.14.2
 Flask-RESTful==0.3.7
 Pillow==6.1.0
 Pygments==2.4.2
-PyYAML==5.1.1
+PyYAML==5.4
 honcho==1.0.1
 misaka==2.1.1
 passlib==1.7.1
